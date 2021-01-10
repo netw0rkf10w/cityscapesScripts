@@ -438,8 +438,8 @@ def printClassScores(scoreList, instScoreList, args):
         if (id2label[label].ignoreInEval):
             continue
         labelName = str(id2label[label].name)
-        iouStr = getColorEntry(scoreList[labelName], args) + "{val:>5.3f}".format(val=scoreList[labelName]) + args.nocol
-        niouStr = getColorEntry(instScoreList[labelName], args) + "{val:>5.3f}".format(val=instScoreList[labelName]) + args.nocol
+        iouStr = getColorEntry(scoreList[labelName], args) + "{val:>5.4f}".format(val=scoreList[labelName]) + args.nocol
+        niouStr = getColorEntry(instScoreList[labelName], args) + "{val:>5.4f}".format(val=instScoreList[labelName]) + args.nocol
         print("{:<14}: ".format(labelName) + iouStr + "    " + niouStr)
 
 # Print intersection-over-union scores for all categorys.
@@ -451,8 +451,8 @@ def printCategoryScores(scoreDict, instScoreDict, args):
     for categoryName in scoreDict:
         if all( label.ignoreInEval for label in category2labels[categoryName] ):
             continue
-        iouStr  = getColorEntry(scoreDict[categoryName], args) + "{val:>5.3f}".format(val=scoreDict[categoryName]) + args.nocol
-        niouStr = getColorEntry(instScoreDict[categoryName], args) + "{val:>5.3f}".format(val=instScoreDict[categoryName]) + args.nocol
+        iouStr  = getColorEntry(scoreDict[categoryName], args) + "{val:>5.4f}".format(val=scoreDict[categoryName]) + args.nocol
+        niouStr = getColorEntry(instScoreDict[categoryName], args) + "{val:>5.4f}".format(val=instScoreDict[categoryName]) + args.nocol
         print("{:<14}: ".format(categoryName) + iouStr + "    " + niouStr)
 
 # Evaluate image lists pairwise.
@@ -509,8 +509,8 @@ def evaluateImgLists(predictionImgList, groundTruthImgList, args):
         print("")
         print("")
         printClassScores(classScoreList, classInstScoreList, args)
-        iouAvgStr  = getColorEntry(getScoreAverage(classScoreList, args), args) + "{avg:5.3f}".format(avg=getScoreAverage(classScoreList, args)) + args.nocol
-        niouAvgStr = getColorEntry(getScoreAverage(classInstScoreList , args), args) + "{avg:5.3f}".format(avg=getScoreAverage(classInstScoreList , args)) + args.nocol
+        iouAvgStr  = getColorEntry(getScoreAverage(classScoreList, args), args) + "{avg:5.4f}".format(avg=getScoreAverage(classScoreList, args)) + args.nocol
+        niouAvgStr = getColorEntry(getScoreAverage(classInstScoreList , args), args) + "{avg:5.4f}".format(avg=getScoreAverage(classInstScoreList , args)) + args.nocol
         print("--------------------------------")
         print("Score Average : " + iouAvgStr + "    " + niouAvgStr)
         print("--------------------------------")
@@ -530,8 +530,8 @@ def evaluateImgLists(predictionImgList, groundTruthImgList, args):
     if (not args.quiet):
         print("")
         printCategoryScores(categoryScoreList, categoryInstScoreList, args)
-        iouAvgStr = getColorEntry(getScoreAverage(categoryScoreList, args), args) + "{avg:5.3f}".format(avg=getScoreAverage(categoryScoreList, args)) + args.nocol
-        niouAvgStr = getColorEntry(getScoreAverage(categoryInstScoreList, args), args) + "{avg:5.3f}".format(avg=getScoreAverage(categoryInstScoreList, args)) + args.nocol
+        iouAvgStr = getColorEntry(getScoreAverage(categoryScoreList, args), args) + "{avg:5.4f}".format(avg=getScoreAverage(categoryScoreList, args)) + args.nocol
+        niouAvgStr = getColorEntry(getScoreAverage(categoryInstScoreList, args), args) + "{avg:5.4f}".format(avg=getScoreAverage(categoryInstScoreList, args)) + args.nocol
         print("--------------------------------")
         print("Score Average : " + iouAvgStr + "    " + niouAvgStr)
         print("--------------------------------")
